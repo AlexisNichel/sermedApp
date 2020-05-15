@@ -11,13 +11,11 @@ import { argonTheme, tabs, Images } from "../constants/";
 import { Button, Select, Icon, Input, Header, Switch, Card, Card2, Card5 } from "../components/";
 import ActionButton from 'react-native-action-button';
 import call from 'react-native-phone-call'
-
 function wp(percentage) {
   const value = (percentage * viewportWidth) / 100;
   return Math.round(value);
 }
 const slideWidth = wp(90);
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -35,15 +33,12 @@ class Home extends React.Component {
       // Error saving data
     }
   }
-
   renderMenus = () => {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.headers}>
-        <Text bold size={22} style={styles.title2} >
-          Noticias
-        </Text>
+     
         <Block center style={styles.home}>
           <Carousel
             layout={'tinder'}
@@ -59,66 +54,70 @@ class Home extends React.Component {
             itemWidth={slideWidth}
             onSnapToItem={(index) => this.setState({ activeSlide: index })}
           />
-
         </Block>
-        <Text bold size={22} style={styles.title}>
-          Guía Médica
-        </Text>
-
+       
         <TouchableOpacity
           onPress={() => {
             const navigateAction = NavigationActions.navigate({
               routeName: 'Medicos',
-              action: NavigationActions.navigate({ routeName: 'Medicos', params: { ciudad_prest: "", especialidad: "" } })
+              action: NavigationActions.navigate({ routeName: 'Medicos', params: { ciudad_prest: "", especialidad: "", search: "" } })
             })
             this.props.navigation.dispatch(navigateAction)
           }}>
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Card5 item={{ imagen: Images.Medico, title: "Médicos", subtitle: "Buscar médico por nombre, apellido o especialidad" }} horizontal navigation={this.props.navigation} />
+            <Card5 item={{ imagen: Images.Medico, title: "Médicos", subtitle: "Buscar por nombre o especialidad" }} horizontal navigation={this.props.navigation} />
           </Block>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Especialidad')}>
+        <TouchableOpacity
+          onPress={() => {
+            const navigateAction = NavigationActions.navigate({
+              routeName: 'Especialidad',
+              action: NavigationActions.navigate({ routeName: 'Especialidad', params: { search: "" } })
+            })
+            this.props.navigation.dispatch(navigateAction)
+          }}>
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Card5 item={{ imagen: Images.Medical, title: "Especialidades", subtitle: "Buscar por especialidad" }} horizontal navigation={this.props.navigation} />
+            <Card5 item={{ imagen: Images.Medical, title: "Especialidad", subtitle: "Buscar por especialidad" }} horizontal navigation={this.props.navigation} />
           </Block>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Ciudad')}>
+        <TouchableOpacity
+          onPress={() => {
+            const navigateAction = NavigationActions.navigate({
+              routeName: 'Ciudad',
+              action: NavigationActions.navigate({ routeName: 'Ciudad', params: { search: "" } })
+            })
+            this.props.navigation.dispatch(navigateAction)
+          }}>
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
             <Card5 item={{ imagen: Images.Ciudad, title: "Ciudades", subtitle: "Buscar médicos por ciudad" }} horizontal navigation={this.props.navigation} />
           </Block>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Location')}>
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Card5 item={{ imagen: Images.Location, title: "Localización", subtitle: "Buscar médicos cercanos a tu ubicación actual" }} horizontal navigation={this.props.navigation} />
+            <Card5 item={{ imagen: Images.Location, title: "Localización", subtitle: "Buscar médicos por ubicación" }} horizontal navigation={this.props.navigation} />
           </Block>
         </TouchableOpacity>
       </ScrollView>
     )
   }
-
-
   _renderItem = ({ item, index }) => {
     return (
       <Card2 item={mock[index]} full />
     );
   }
-
   render() {
     return (
-
       <Block flex center style={styles.home}>
-
         {this.renderMenus()}
         <ActionButton offsetY={25} offsetX={10} size={60} buttonColor={theme.COLORS.FACEBOOK} renderIcon={active => <Icon name="message" family="other" style={styles.actionButtonIcon} />}>>
-          <ActionButton.Item buttonColor='#9b59b6' title="Ambulancia" onPress={() => {
+          <ActionButton.Item buttonColor='#2d4575' title="Ambulancia" onPress={() => {
             const args = {
               number: '09734543655',
               prompt: false
             }
             call(args).catch(console.error)
-
           }}>
-            <Icon size={16} color={theme.COLORS.MUTED} name="bell" family="ArgonExtra" style={styles.actionButtonIcon}/>
+            <Icon size={16} color={theme.COLORS.MUTED} name="bell" family="ArgonExtra" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#3498db' title="Llamanos" onPress={() => {
             const args = {
@@ -218,7 +217,5 @@ const styles = StyleSheet.create({
     borderRadius: theme.SIZES.BASE * 1.75,
     justifyContent: "center"
   }
-
 });
-
 export default Home;

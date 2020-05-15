@@ -1,1 +1,0 @@
-Sermed mobile app

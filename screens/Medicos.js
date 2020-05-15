@@ -84,9 +84,11 @@ class Medicos extends React.Component {
     var options = {
       keys: ['prestador_nombre', 'prestador_apellido', 'especialidad']
     }
+    this.props.navigation.setParams({ search: search })
+
     var fuse = new Fuse(this.state.ref.respConsulta, options)
     var searchResult = fuse.search(search);
-
+    
     if (search) {
       if (this.timeout) clearTimeout(this.timeout);
         this.setState({
@@ -107,6 +109,7 @@ class Medicos extends React.Component {
   renderSearch = () => {
     return (
       <Input
+        value ={this.props.navigation.getParam("search")}
         right
         color="black"
         style={styles.search}

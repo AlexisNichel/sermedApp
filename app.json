@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Sermeds",
+    "name": "Sermed",
     "slug": "guia-medica",
     "privacy": "public",
     "sdkVersion": "35.0.0",
@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.0.2",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -20,13 +20,18 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "package": "com.crear.sermed"
+      "package": "com.crear.sermed",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAbfia8heO9GQ4HvbuLq1U7gtWpW-EoBsQ"
+        }
+      }
     },
     "description": "App de guia médica"
   }

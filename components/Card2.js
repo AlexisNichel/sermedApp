@@ -3,10 +3,7 @@ import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
-
 import { argonTheme } from '../constants';
-
-
 class Card2 extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
@@ -21,14 +18,9 @@ class Card2 extends React.Component {
     ];
     return (
       <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback>
           <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={imageStyles} />
-          </Block>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex space="between" style={styles.cardDescription}>
-          <Text size={14} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} >{item.prestador_nombre}</Text>
+            <Image source={item.image} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
       </Block>
@@ -36,6 +28,12 @@ class Card2 extends React.Component {
   }
 }
 
+/*
+    <TouchableWithoutFeedback>
+          <Block flex space="between" style={styles.cardDescription}>
+          <Text size={14} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} >{item.prestador_nombre}</Text>
+          </Block>
+        </TouchableWithoutFeedback>*/
 
 Card2.propTypes = {
   item: PropTypes.object,
@@ -44,7 +42,6 @@ Card2.propTypes = {
   ctaColor: PropTypes.string,
   imageStyle: PropTypes.any,
 }
-
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.COLORS.WHITE,
@@ -66,9 +63,6 @@ const styles = StyleSheet.create({
     elevation: 1,
     overflow: 'hidden',
   },
-  image: {
-    // borderRadius: 3,
-  },
   horizontalImage: {
     height: 122,
     width: 'auto',
@@ -82,7 +76,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0
   },
   fullImage: {
-    height: 215
+    height: 360,
+    width: 'auto'
   },
   shadow: {
     shadowColor: theme.COLORS.BLACK,

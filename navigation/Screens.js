@@ -12,7 +12,7 @@ import Ciudad from "../screens/Ciudad";
 import Medicos from "../screens/Medicos";
 import Location from "../screens/Location";
 import Especialidad from "../screens/Especialidad";
-import Menu from "./Menu";
+import Menu from "./Menu"; 
 import DrawerItem from "../components/DrawerItem";
 import Header from "../components/Header";
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
